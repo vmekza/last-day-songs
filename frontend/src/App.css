@@ -1,0 +1,221 @@
+/*===================HOME========================*/
+body {
+  font-family: 'Roboto Mono';
+  font-size: 100%;
+  line-height: 1;
+  font-size: 1.5rem;
+  background: #f2f2f2;
+}
+.home {
+  height: 100vh;
+  padding: 0px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  gap: 20px;
+}
+.home:after {
+  display: block;
+  content: '';
+  min-width: 450px;
+  min-height: 400px;
+  z-index: -2;
+  position: absolute;
+  top: 200px;
+  left: 80px;
+  border: solid 10px #0b0b0b;
+  border-right: none;
+}
+.left_content {
+  flex: 0 1 30%;
+  margin: 0px 25px 0px 10px;
+  display: block;
+  text-align: center;
+  position: relative;
+  white-space: pre-line;
+  font-family: 'Roboto Mono';
+  max-width: 600px;
+  padding: 5px 30px 5px 0px;
+  border-right: none;
+  font-family: 'Roboto Mono';
+}
+
+.left_content_top > span {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  width: 300px;
+  top: 0.8rem;
+  animation: 0.5s swift-up ease-in-out forwards;
+  line-height: 2rem;
+}
+.left_content_bottom > span {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  width: 300px;
+  top: 0.8rem;
+  animation: 0.5s swift-up ease-in-out forwards;
+  line-height: 2rem;
+}
+
+i {
+  font-style: normal;
+  position: relative;
+  top: 2rem;
+  animation: 0.5s swift-up ease-in-out forwards;
+}
+@keyframes swift-up {
+  to {
+    top: 0rem;
+  }
+}
+span:nth-of-type(1) i {
+  animation-delay: 0s;
+}
+
+span:nth-of-type(2) i {
+  animation-delay: 0.1s;
+}
+
+span:nth-of-type(3) i {
+  animation-delay: 0.2s;
+}
+span:nth-of-type(4) i {
+  animation-delay: 0.3s;
+}
+
+span:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+span:nth-of-type(2) {
+  animation-delay: 0.1s;
+}
+
+span:nth-of-type(3) {
+  animation-delay: 0.2s;
+}
+
+.right_content {
+  font-size: 1.5rem;
+  color: #040404;
+  text-transform: uppercase;
+  flex: 0 1 50%;
+  text-align: center;
+}
+.right_content-top {
+  margin: 0px 0px 50px 0px;
+  font-size: 1.7rem;
+  letter-spacing: 0.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flip {
+  height: 50px;
+  overflow: hidden;
+  margin: 0px 10px 0px 10px;
+  line-height: 1.7rem;
+}
+
+.flip > div > div {
+  color: #fffff3;
+  padding: 4px 12px;
+  height: 45px;
+  margin-bottom: 45px;
+  display: inline-block;
+  text-align: center;
+}
+
+.flip__day {
+  margin: 0px -35px 0px -90px;
+}
+
+.flip div div {
+  background: #b91372;
+}
+
+.flip div:first-child {
+  animation: show 5s linear infinite;
+}
+
+.flip div:first-child div {
+  background: #00d9c0;
+}
+
+.flip div:last-child div {
+  background: #ff4365;
+}
+
+@keyframes show {
+  0% {
+    margin-top: -270px;
+  }
+  5% {
+    margin-top: -180px;
+  }
+  33% {
+    margin-top: -180px;
+  }
+  38% {
+    margin-top: -90px;
+  }
+  66% {
+    margin-top: -90px;
+  }
+  71% {
+    margin-top: 0px;
+  }
+  99.99% {
+    margin-top: 0px;
+  }
+  100% {
+    margin-top: -270px;
+  }
+}
+.right_content-bottom {
+  line-height: 2;
+}
+
+.visibility {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+.buttons {
+  margin-top: 60px;
+}
+.btn {
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  transition: all 500ms ease;
+  background-color: rgba(255, 255, 255, 1);
+  border: 2px;
+  box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
+  transition: 0.5s;
+}
+.btn_log-in {
+  margin-right: 25px;
+  text-decoration: none;
+  color: #040404;
+}
+.btn_sign-up {
+  margin-left: 25px;
+}
+.btn_log-in:hover {
+  color: #f2f2f2;
+  background-color: #00d9c0;
+  box-shadow: 0 0 20px #24e1cb;
+}
+.btn_sign-up:hover {
+  color: #f2f2f2;
+  background-color: #b91372;
+  box-shadow: 0 0 20px #b7317d;
+}

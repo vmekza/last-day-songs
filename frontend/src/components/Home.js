@@ -59,11 +59,12 @@ const Home = () => {
           <p>Just a little reminder everyone</p>
           <p> how superior your music taste was...</p>
           <div className='buttons'>
-            <Link to='/add' className='btn btn_log-in'>
+            <Link to='/login' className='btn btn_login'>
               Login
             </Link>
-
-            <button className='btn btn_sign-up'>Sign up</button>
+            <Link to='/signup' className='btn btn_sign-up'>
+              Sign up
+            </Link>
           </div>
         </div>
       </div>

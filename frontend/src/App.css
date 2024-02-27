@@ -201,15 +201,14 @@ button {
   box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
   transition: 0.5s;
 }
-.btn_log-in {
+.btn_login,
+.btn_sign-up {
   margin-right: 25px;
   text-decoration: none;
   color: #040404;
 }
-.btn_sign-up {
-  margin-left: 25px;
-}
-.btn_log-in:hover {
+
+.btn_login:hover {
   color: #f2f2f2;
   background-color: #00d9c0;
   box-shadow: 0 0 20px #24e1cb;
@@ -219,3 +218,254 @@ button {
   background-color: #b91372;
   box-shadow: 0 0 20px #b7317d;
 }
+
+/*====================LOGIN&SIGNUP====================*/
+
+.login,
+.signup {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  height: 100vh;
+}
+
+.login_title,
+.signup_title {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+label {
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+input[type='name'],
+input[type='email'],
+input[type='password'] {
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  transition: border-color 0.3s;
+}
+input[type='email']:focus,
+input[type='password']:focus {
+  border-color: #aaa;
+}
+input[type='checkbox'] {
+  margin-right: 5px;
+}
+
+.btn_login-form,
+.btn_signup-form {
+  padding: 10px 20px;
+  width: 100%;
+}
+.login-signup_error {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  color: rgb(243, 7, 7);
+}
+
+
+/*====================SEARCH====================*/
+
+.songs {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: space-around;
+  padding: 0px 15px;
+
+
+}
+.search_item {
+  margin-bottom: 30px;
+  text-align: center;
+
+}
+.songs_search {
+  /* max-width: 50%; */
+  align-items: center;
+  flex: 80%;
+}
+.search_result {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* text-align: center; */
+  align-items: center;
+  /* justify-content: center; */
+  
+}
+.result_card {
+  /* display: flex; 
+  flex-direction: column;  */
+  background: #FFF;
+   width: 200px;
+   height: 220px;
+   margin: 20px;
+   box-shadow: 0px 0px 20px rgba(0,0,0,0.05);
+   box-sizing: border-box;
+   padding: 20px;
+   border-radius: 5px;
+   padding: 10px 15px;
+   position: relative;
+  
+}
+.result_img {
+  height: 110px;
+  width: 100%;
+  margin-bottom: 25px;
+ 
+}
+.result_name {
+  margin-bottom: 10px;
+}
+.result_name, .result_title {
+  flex-grow: 0;
+  font-size: 0.8rem;
+overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  line-height: 1rem;
+  text-transform: uppercase;
+}
+.result_add {
+  position: absolute;
+  right: 10px;
+}
+.songs_list {
+  display: flex;
+  justify-content: center;
+ min-height: 300px;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+ 
+ 
+}
+
+
+
+
+/* 
+.songs__search {
+  flex: 0 1 70%;
+  color: #dfe0e2;
+  margin: 0px 20px 0px 0px;
+  font-size: 1rem;
+}
+
+.search__item {
+  margin: 0px 0px 40px 0px;
+}
+
+.search__field {
+  width: 500px;
+  height: 50px;
+  font-size: 0.8rem;
+  padding: 0px 10px;
+}
+
+.search__button {
+  width: 100px;
+  font-size: 0.8rem;
+  color: #fffff3;
+}
+
+
+
+.list__text {
+  position: absolute;
+  text-align: center;
+  top: 40%;
+  left: 8%;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+.list__text:after,
+.list__text:before {
+  background-image: linear-gradient(90deg, #181717, #181717);
+  content: "";
+  width: 100%;
+  height: 4px;
+  left: 0;
+  position: absolute;
+  z-index: 2;
+  animation: blinds 3s ease infinite alternate;
+}
+
+.list__text:before {
+  top: 0px;
+}
+
+.list__text:after {
+  bottom: -10px;
+} */
+
+/* @keyframes blinds {
+  0% {
+    height: 52%;
+  }
+  20% {
+    height: 52%;
+  }
+  100% {
+    height: 4px;
+  }
+}
+
+.songs__list:before,
+.songs__list:after {
+  content: "";
+  position: absolute;
+  width: 87%;
+  left: calc(50% - 45%);
+  height: 2px;
+  background-color: #181717;
+  z-index: 3;
+  animation: size 3s ease infinite alternate;
+}
+.songs__list:before {
+  background-color: #dfe0e2;
+  top: 38%;
+}
+
+.songs__list:after {
+  background-color: #dfe0e2;
+  top: 59%;
+  z-index: 3;
+}
+@keyframes size {
+  0% {
+    top: 50%;
+    left: 50%;
+    width: 0%;
+  }
+
+  20% {
+    width: 87%;
+    left: calc(50% - 45%);
+    top: 50%;
+  }
+  60% {
+    width: 87%;
+    left: calc(50% - 45%);
+  }
+
+  100% {
+    width: 87%;
+    left: calc(50% - 45%);
+  }
+}
+
+.hide-animation:after,
+.hide-animation:before {
+  animation: none;
+  background-color: transparent;
+} */

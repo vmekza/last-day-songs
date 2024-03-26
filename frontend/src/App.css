@@ -15,7 +15,7 @@ body {
   text-align: center;
   gap: 20px;
 }
-.home:after {
+/* .home:after {
   display: block;
   content: '';
   min-width: 450px;
@@ -26,7 +26,7 @@ body {
   left: 80px;
   border: solid 10px #0b0b0b;
   border-right: none;
-}
+} */
 .left_content {
   flex: 0 1 30%;
   margin: 0px 25px 0px 10px;
@@ -283,8 +283,27 @@ input[type='checkbox'] {
 
 }
 .search_item {
+  margin-top: 20px;
   margin-bottom: 30px;
   text-align: center;
+
+}
+.search_field{
+  width: 400px;
+  height: 40px;
+  margin-right: 20px;
+  padding: 0px 10px;
+  /* border-radius: 5px; */
+  border: 1px solid #aaa;
+}
+.button {
+  text-transform: uppercase;
+  /* border-radius: 5px; */
+  border: 1px solid #aaa;
+}
+.search_button {
+  height: 40px;
+
 
 }
 .songs_search {
@@ -292,52 +311,59 @@ input[type='checkbox'] {
   align-items: center;
   flex: 80%;
 }
-.search_result {
+.search_results {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* text-align: center; */
+  text-align: center;
   align-items: center;
-  /* justify-content: center; */
-  
+  justify-content: center;
+
 }
 .result_card {
-  /* display: flex; 
+  /* display: flex;
   flex-direction: column;  */
   background: #FFF;
    width: 200px;
-   height: 220px;
+   height: 291px;
    margin: 20px;
    box-shadow: 0px 0px 20px rgba(0,0,0,0.05);
    box-sizing: border-box;
-   padding: 20px;
-   border-radius: 5px;
-   padding: 10px 15px;
+   /* padding: 10px; */
+   /* border-radius: 5px; */
+   padding: 15px 15px 10px 15px;
    position: relative;
-  
+
 }
-.result_img {
-  height: 110px;
+.result_img img{
+  height: 200px;
   width: 100%;
-  margin-bottom: 25px;
- 
+  margin-bottom: 15px;
+  object-fit: cover;
+  object-position: center;
+
 }
 .result_name {
   margin-bottom: 10px;
 }
 .result_name, .result_title {
   flex-grow: 0;
-  font-size: 0.8rem;
-overflow: hidden;
+  font-size: 0.9rem;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: center;
   line-height: 1rem;
   text-transform: uppercase;
 }
+
+.result_title {
+  margin-right: 17px;
+}
 .result_add {
   position: absolute;
-  right: 10px;
+  right: 13px;
+  bottom: 10px;
 }
 .songs_list {
   display: flex;
@@ -346,14 +372,14 @@ overflow: hidden;
   align-items: center;
   height: 100%;
   text-align: center;
- 
- 
+
+
 }
 
 
 
 
-/* 
+/*
 .songs__search {
   flex: 0 1 70%;
   color: #dfe0e2;

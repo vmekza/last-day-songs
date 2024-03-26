@@ -42,17 +42,17 @@ const Home = () => {
       </div>
       <div>
         <div className='right_content'>
-          <h1 class='right_content-top'>
+          <h1 className='right_content-top'>
             Your
-            <div class='ight_content__flip flip'>
+            <div className='ight_content__flip flip'>
               <div>
-                <div class='flip__songs'>songs</div>
+                <div className='flip__songs'>songs</div>
               </div>
               <div>
-                <div class='flip__rules'>rules</div>
+                <div className='flip__rules'>rules</div>
               </div>
               <div>
-                <div class='flip__day'>day</div>
+                <div className='flip__day'>day</div>
               </div>
             </div>
           </h1>

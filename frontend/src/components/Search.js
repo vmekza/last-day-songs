@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMusic, faPlay } from '@fortawesome/free-solid-svg-icons';
+
+
 
 const CLIENT_ID = "6c69e88cb3d6418b985f5dd5c7801b3f";
 const CLIENT_SECRET = "b65692da541a4177bf13bd2f43157c23";
@@ -8,6 +10,8 @@ const Search = () => {
   const [searchInput, setSearchInput] = useState("");
   const [accessToken, setAccesstoken] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [currentPreviewUrl, setCurrentPreviewUrl] = useState(null);
+
 
 
   useEffect(() => {
@@ -74,33 +78,64 @@ async function fetchArtistTracks(artistId) {
 
 }
 
+// const playTrack = (previewUrl) => {
+//   setCurrentPreviewUrl(previewUrl);
+// };
+
+const playTrack = (previewUrl) => {
+  console.log("Attempting to play URL: ", previewUrl); // Debugging line
+  if(previewUrl) {
+    setCurrentPreviewUrl(previewUrl);
+  } else {
+    console.log("No preview URL available for this track.");
+  }
+};
+
+
   return (
   <div className="songs">
     <div className="songs_search search">
-      <div className="search_item">
-        <input className="search_field" type="input" placeholder="Enter name of artist or song..." onKeyDown ={event =>{
-            if(event.key == "Enter") {
-              search();
-            }
+      <div className="search_wrapper">
+        <div className="search_item">
+          <input className="search_field" type="input" placeholder="Enter name of artist or song..." onKeyDown ={event =>{
+              if(event.key === "Enter") {
+                search();
+              }
           }} onChange={event => setSearchInput(event.target.value)}
-        />
-        <button onClick={search} className="search_button button">Search</button>
+          />
+          <button onClick={search} className="search_button button">Search</button>
+
+        </div>
+        <div className="search_playlist"><FontAwesomeIcon icon={faMusic} /></div>
       </div>
-      <div className="search_results result"> {searchResults.map((track) => (
-          <div className="result_card" key={track.id}>
-            <div className="result_img"><img src={track.album.images[0]?.url || '#'} alt={track.name} /></div>
-            <div className="result_name">{track.artists[0].name}</div>
-            <div className="result_title">{track.name}</div>
-            <div className='result_add'><FontAwesomeIcon icon={faPlus} /></div>
-          </div>
-        ))}
       </div>
+      <div className="search_results result">
+  {searchResults.map((track) => (
+    <div className="result_card" key={track.id}>
+      <div className="result_img">
+        <img src={track.album.images[0]?.url || '#'} alt={track.name} />
+      </div>
+      <div className="result_name">{track.artists[0].name}</div>
+      <div className="result_title">{track.name}</div>
+      <div className="result_add"><FontAwesomeIcon icon={faPlus} /></div>
+      <div className="result_play_icon" style={{ opacity: track.preview_url ? 1 : 0.2 }} onClick={() => track.preview_url && playTrack(track.preview_url)}>
+  <FontAwesomeIcon icon={faPlay} />
+</div>
+
     </div>
-    {/* <div className="songs_list list">
-      <p className="list_text">
-        Your playlist is yet empty...<br />Search and add something!
-      </p>
-    </div> */}
+  ))}
+</div>
+{currentPreviewUrl && (
+  <div className="global_audio_player">
+    <audio controls autoPlay src={currentPreviewUrl}>
+      Your browser does not support the audio element
+    </audio>
+  </div>
+)}
+
+
+
+
   </div>
   )
 

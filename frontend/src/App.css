@@ -276,16 +276,22 @@ input[type='checkbox'] {
 
 .songs {
   display: flex;
-  /* flex-direction: row; */
+  flex-direction: column;
   justify-content: space-around;
-  padding: 0px 15px;
+  padding: 0px 15px
 
+}
+.search_wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
 }
 .search_item {
-  margin-top: 20px;
+  margin-top: 35px;
   margin-bottom: 30px;
   text-align: center;
+  margin-right: 400px;
 
 }
 .search_field{
@@ -303,13 +309,31 @@ input[type='checkbox'] {
 }
 .search_button {
   height: 40px;
-
-
 }
+.search_playlist {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  position: relative;
+  cursor: pointer;
+  margin-right: 18px;
+}
+.search_playlist:after {
+  content: "";
+  display: block;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid #040404;
+  position: absolute;
+  z-index: -2;
+  top: -8px;
+  right: -13px;
+}
+
 .songs_search {
-  /* max-width: 50%; */
+
   align-items: center;
-  flex: 80%;
+
 }
 .search_results {
   display: flex;
@@ -321,16 +345,12 @@ input[type='checkbox'] {
 
 }
 .result_card {
-  /* display: flex;
-  flex-direction: column;  */
   background: #FFF;
    width: 200px;
    height: 291px;
    margin: 20px;
    box-shadow: 0px 0px 20px rgba(0,0,0,0.05);
    box-sizing: border-box;
-   /* padding: 10px; */
-   /* border-radius: 5px; */
    padding: 15px 15px 10px 15px;
    position: relative;
 
@@ -345,6 +365,7 @@ input[type='checkbox'] {
 }
 .result_name {
   margin-bottom: 10px;
+  margin-right: 15px;
 }
 .result_name, .result_title {
   flex-grow: 0;
@@ -358,23 +379,35 @@ input[type='checkbox'] {
 }
 
 .result_title {
-  margin-right: 17px;
+  margin-right: 15px;
 }
 .result_add {
   position: absolute;
   right: 13px;
   bottom: 10px;
+  font-size: 18px;
+  cursor: pointer;
 }
-.songs_list {
-  display: flex;
-  justify-content: center;
- min-height: 300px;
-  align-items: center;
-  height: 100%;
+.result_play_icon {
+  position: absolute;
+  right: 13px;
+  bottom: 40px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.global_audio_player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #f2f2f2;
   text-align: center;
-
+  padding: 10px;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
 
 }
+
 
 
 

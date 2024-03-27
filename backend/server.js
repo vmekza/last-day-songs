@@ -11,10 +11,10 @@ app.use(express.json());
 
 //Connection to MYSQL
 const db = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: 'Catherine261283',
-  database: 'signup',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
 });
 db.connect((err) => {
   if (err) {
@@ -31,15 +31,17 @@ app.post('/signup', (req, res) => {
   bcrypt.hash(password, saltRounds, (err, hash) => {
     if (err) {
       console.error('Error hashing password:', err);
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({ error: "Error hashing password" });
     }
-    const query = 'INSERT INTO login (`name`, `email`, `password`) VALUES (?)';
-    const values = [req.body.name, req.body.email, req.body.password];
-    db.query(query, [values], (err, data) => {
-      if (err) {
-        console.error('Error executing query:', err);
-        return res.status(500).json({ error: err.message });
-      }   else {
+    // Correct the query to include placeholders for each value
+    const query = 'INSERT INTO login (name, email, password) VALUES (?, ?, ?)';
+    // Pass the values directly without additional nesting
+    const values = [name, email, hash];
+    db.query(query, values, (error, data) => {
+      if (error) {
+        console.error('Error executing query:', error);
+        return res.status(500).json({ error: "Error executing query" });
+      } else {
         return res.json({
           message: 'User added successfully',
           insertId: data.insertId,
@@ -48,6 +50,9 @@ app.post('/signup', (req, res) => {
     });
   });
 });
+
+
+
 
 app.post('/login', (req, res) => {
   const { email, password } = req.body;

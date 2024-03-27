@@ -16,7 +16,7 @@ const Signup = () => {
   const handleInput = (event) => {
     setValues((prev) => ({
       ...prev,
-      [event.target.name]: [event.target.value],
+      [event.target.name]: event.target.value,
     }));
   };
   const handleSubmit = (event) => {

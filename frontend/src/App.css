@@ -15,18 +15,6 @@ body {
   text-align: center;
   gap: 20px;
 }
-/* .home:after {
-  display: block;
-  content: '';
-  min-width: 450px;
-  min-height: 400px;
-  z-index: -2;
-  position: absolute;
-  top: 200px;
-  left: 80px;
-  border: solid 10px #0b0b0b;
-  border-right: none;
-} */
 .left_content {
   flex: 0 1 30%;
   margin: 0px 25px 0px 10px;
@@ -34,12 +22,17 @@ body {
   text-align: center;
   position: relative;
   white-space: pre-line;
-  font-family: 'Roboto Mono';
+  font-family: 'Space+Mono';
+  text-transform: uppercase;
   max-width: 600px;
-  padding: 5px 30px 5px 0px;
+  /* padding: 5px 30px 5px 0px; */
+  padding: 30px 60px;
   border-right: none;
-  font-family: 'Roboto Mono';
+  background-color: rgba(255, 255, 255, 1);
+  border: 2px;
+  box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
 }
+
 
 .left_content_top > span {
   display: inline-block;

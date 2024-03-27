@@ -20,7 +20,7 @@ const Home = () => {
             <br></br>
             <br></br>
             <span>
-              <i>Save it or share it.</i>
+              <i>[ Save it or share it ]</i>
             </span>
             <br></br>
             <br></br>

@@ -43,26 +43,26 @@ const Home = () => {
       <div>
         <div className='right_content'>
           <h1 className='right_content-top'>
-            Your
-            <div className='ight_content__flip flip'>
+            <span className='right_content-title'>Your</span>
+            <div className='ight_content_flip flip'>
               <div>
-                <div className='flip__songs'>songs</div>
+                <div className='flip_songs'>songs</div>
               </div>
               <div>
-                <div className='flip__rules'>rules</div>
+                <div className='flip_rules'>rules</div>
               </div>
               <div>
-                <div className='flip__day'>day</div>
+                <div className='flip_day'>day</div>
               </div>
             </div>
           </h1>
           <p>Just a little reminder everyone</p>
           <p> how superior your music taste was...</p>
           <div className='buttons'>
-            <Link to='/login' className='btn btn_login'>
+            <Link to='/login' className='button btn btn_login'>
               Login
             </Link>
-            <Link to='/signup' className='btn btn_sign-up'>
+            <Link to='/signup' className='button btn btn_sign-up'>
               Sign up
             </Link>
           </div>

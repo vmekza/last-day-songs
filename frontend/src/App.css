@@ -31,6 +31,7 @@ body {
   background-color: rgba(255, 255, 255, 1);
   border: 2px;
   box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
+  border-radius: 5px;
 }
 
 
@@ -98,6 +99,9 @@ span:nth-of-type(3) {
   flex: 0 1 50%;
   text-align: center;
 }
+.right_content-title {
+  padding-bottom: 11px;
+}
 .right_content-top {
   margin: 0px 0px 50px 0px;
   font-size: 1.7rem;
@@ -116,17 +120,18 @@ span:nth-of-type(3) {
 
 .flip > div > div {
   color: #fffff3;
-  padding: 4px 12px;
+  padding: 4px 10px 3px 17px;
   height: 45px;
   margin-bottom: 45px;
   display: inline-block;
-  text-align: center;
 }
 
-.flip__day {
-  margin: 0px -35px 0px -90px;
+.flip_day {
+  margin: 0px -45px 0px -90px;
 }
-
+/* .flip_songs {
+  margin-bottom: -15px;
+} */
 .flip div div {
   background: #b91372;
 }
@@ -177,28 +182,29 @@ span:nth-of-type(3) {
   display: none;
 }
 
-button {
+.button {
   cursor: pointer;
+  background-color: rgba(255, 255, 255, 1);
+  border: 2px;
+  box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
+  border-radius: 5px;
+  color: #040404;
+  font-weight: 700;
 }
 .buttons {
   margin-top: 60px;
 }
 .btn {
   text-transform: uppercase;
-  font-weight: 700;
   padding: 15px 20px;
   font-size: 1.2rem;
   transition: all 500ms ease;
-  background-color: rgba(255, 255, 255, 1);
-  border: 2px;
-  box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
   transition: 0.5s;
 }
 .btn_login,
 .btn_sign-up {
   margin-right: 25px;
   text-decoration: none;
-  color: #040404;
 }
 
 .btn_login:hover {
@@ -292,12 +298,12 @@ input[type='checkbox'] {
   height: 40px;
   margin-right: 20px;
   padding: 0px 10px;
-  /* border-radius: 5px; */
-  border: 1px solid #aaa;
+  border: 2px;
+  box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
+  border-radius: 5px;
 }
 .button {
   text-transform: uppercase;
-  /* border-radius: 5px; */
   border: 1px solid #aaa;
 }
 .search_button {
@@ -346,6 +352,8 @@ input[type='checkbox'] {
    box-sizing: border-box;
    padding: 15px 15px 10px 15px;
    position: relative;
+   box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
+   border-radius: 5px;
 
 }
 .result_img img{
@@ -354,7 +362,7 @@ input[type='checkbox'] {
   margin-bottom: 15px;
   object-fit: cover;
   object-position: center;
-
+  border-radius: 5px;
 }
 .result_name {
   margin-bottom: 10px;
@@ -402,9 +410,51 @@ input[type='checkbox'] {
 }
 
 
+.search_playlist {
+  position: relative;
+  display: inline-block;
+}
 
+.playlist_dropdown {
+  position: absolute;
+  right: 0px;
+  top: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 400px;
+  border: 2px;
+  box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
+  /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); */
+  z-index: 1;
+  font-size: 0.9rem;
+}
 
+.playlist_track, .playlist_empty {
+  margin: 20px 0px;
+  padding: 0px 15px;
 
+}
+.playlist_img {
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+}
+.playlist_wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+.playlist_track {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+}
+.playlist_delete_icon {
+  cursor: pointer;
+}
 /*
 .songs__search {
   flex: 0 1 70%;
@@ -521,3 +571,5 @@ input[type='checkbox'] {
   animation: none;
   background-color: transparent;
 } */
+
+

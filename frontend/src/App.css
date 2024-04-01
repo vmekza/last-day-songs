@@ -194,75 +194,21 @@ span:nth-of-type(3) {
 .right_content-button {
   margin-top: 60px;
 }
-.btn {
+
+.btn_start{
+  margin-right: 25px;
+  text-decoration: none;
   text-transform: uppercase;
   padding: 15px 20px;
   font-size: 1.2rem;
   transition: all 500ms ease;
   transition: 0.5s;
 }
-.btn_start{
-  margin-right: 25px;
-  text-decoration: none;
-}
 
 .btn_start:hover {
   color: #f2f2f2;
   background-color: #00d9c0;
   box-shadow: 0 0 20px #24e1cb;
-}
-
-
-/*====================LOGIN&SIGNUP====================*/
-
-.login,
-.signup {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-  height: 100vh;
-}
-
-.login_title,
-.signup_title {
-  text-transform: uppercase;
-  font-size: 1.5rem;
-}
-label {
-  text-transform: uppercase;
-  margin-bottom: 15px;
-  font-size: 1rem;
-}
-input[type='name'],
-input[type='email'],
-input[type='password'] {
-  border: 1px solid #ddd;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  transition: border-color 0.3s;
-}
-input[type='email']:focus,
-input[type='password']:focus {
-  border-color: #aaa;
-}
-input[type='checkbox'] {
-  margin-right: 5px;
-}
-
-.btn_login-form,
-.btn_signup-form {
-  padding: 10px 20px;
-  width: 100%;
-}
-.login-signup_error {
-  display: block;
-  font-size: 0.8rem;
-  margin-bottom: 10px;
-  color: rgb(243, 7, 7);
 }
 
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMusic, faPlay, faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -145,6 +146,7 @@ const removeFromPlaylist = (trackId) => {
             ) : (
               <div className="playlist_empty">Playlist is empty</div>
             )}
+            <Link to="/customize" className='playlist_button-customize button'>Customize</Link>
           </div>
         )}
         </div>

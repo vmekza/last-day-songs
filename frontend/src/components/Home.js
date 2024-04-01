@@ -59,7 +59,7 @@ const Home = () => {
           <p>Just a little reminder everyone</p>
           <p> how superior your music taste was...</p>
           <div className='right_content-button'>
-            <Link to='/search' className='button btn btn_start'>
+            <Link to='/search' className='button btn_start'>
               Start
             </Link>
           </div>

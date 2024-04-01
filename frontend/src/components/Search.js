@@ -107,12 +107,6 @@ const playTrack = (previewUrl) => {
     console.log("No preview URL available for this track.");
   }
 };
-// const addToPlaylist = (track) => {
-//   if (!addedTracks[track.id]) { // Check if the track hasn't been added yet
-//     setPlaylist(currentPlaylist => [...currentPlaylist, track]);
-//     setAddedTracks({...addedTracks, [track.id]: true}); // Mark the track as added
-//   }
-// };
 
 const addToPlaylist = (track) => {
   if (!addedTracks[track.id]) {
@@ -123,16 +117,6 @@ const addToPlaylist = (track) => {
   }
 };
 
-// const removeFromPlaylist = (trackId) => {
-//   // Filter out the track with the specific ID from the playlist
-//   const updatedPlaylist = playlist.filter(track => track.id !== trackId);
-//   setPlaylist(updatedPlaylist);
-
-//   // Optionally, update the addedTracks state to reflect the removal
-//   const updatedAddedTracks = { ...addedTracks };
-//   delete updatedAddedTracks[trackId];
-//   setAddedTracks(updatedAddedTracks);
-// };
 
 const removeFromPlaylist = (trackId) => {
   const updatedPlaylist = playlist.filter(track => track.id !== trackId);
@@ -142,7 +126,8 @@ const removeFromPlaylist = (trackId) => {
   setAddedTracks(updatedAddedTracks);
   localStorage.setItem('playlist', JSON.stringify(updatedPlaylist)); // Update localStorage
 };
-  return (
+
+return (
   <div className="songs">
     <div className="songs_search search">
       <div className="search_wrapper">

@@ -44,7 +44,7 @@ const Home = () => {
         <div className='right_content'>
           <h1 className='right_content-top'>
             <span className='right_content-title'>Your</span>
-            <div className='ight_content_flip flip'>
+            <div className='right_content_flip flip'>
               <div>
                 <div className='flip_songs'>songs</div>
               </div>
@@ -58,12 +58,9 @@ const Home = () => {
           </h1>
           <p>Just a little reminder everyone</p>
           <p> how superior your music taste was...</p>
-          <div className='buttons'>
-            <Link to='/login' className='button btn btn_login'>
-              Login
-            </Link>
-            <Link to='/signup' className='button btn btn_sign-up'>
-              Sign up
+          <div className='right_content-button'>
+            <Link to='/search' className='button btn btn_start'>
+              Start
             </Link>
           </div>
         </div>

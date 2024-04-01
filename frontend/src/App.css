@@ -191,7 +191,7 @@ span:nth-of-type(3) {
   color: #040404;
   font-weight: 700;
 }
-.buttons {
+.right_content-button {
   margin-top: 60px;
 }
 .btn {
@@ -201,22 +201,17 @@ span:nth-of-type(3) {
   transition: all 500ms ease;
   transition: 0.5s;
 }
-.btn_login,
-.btn_sign-up {
+.btn_start{
   margin-right: 25px;
   text-decoration: none;
 }
 
-.btn_login:hover {
+.btn_start:hover {
   color: #f2f2f2;
   background-color: #00d9c0;
   box-shadow: 0 0 20px #24e1cb;
 }
-.btn_sign-up:hover {
-  color: #f2f2f2;
-  background-color: #b91372;
-  box-shadow: 0 0 20px #b7317d;
-}
+
 
 /*====================LOGIN&SIGNUP====================*/
 
@@ -454,6 +449,17 @@ input[type='checkbox'] {
 }
 .playlist_delete_icon {
   cursor: pointer;
+}
+
+.playlist_count {
+  position: absolute;
+  top: 20px;
+  left: 17px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem; 
 }
 /*
 .songs__search {

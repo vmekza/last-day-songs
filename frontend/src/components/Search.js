@@ -124,6 +124,9 @@ const removeFromPlaylist = (trackId) => {
           onMouseEnter={() => setShowPlaylistDropdown(true)}
           onMouseLeave={() => setShowPlaylistDropdown(false)}
           ><FontAwesomeIcon icon={faMusic} />
+          {playlist.length > 0 && (
+        <div className="playlist_count">{playlist.length}</div>
+    )}
           {showPlaylistDropdown && (
           <div className="playlist_dropdown">
             {playlist.length > 0 ? (

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMusic, faPlay, faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
+
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
 
@@ -23,6 +24,17 @@ const Search = () => {
   };
 
   useEffect(() => {
+    const savedPlaylist = localStorage.getItem('playlist');
+  if (savedPlaylist) {
+    setPlaylist(JSON.parse(savedPlaylist));
+    // Rebuild the addedTracks state based on loaded playlist
+    const loadedAddedTracks = JSON.parse(savedPlaylist).reduce((acc, track) => {
+      acc[track.id] = true;
+      return acc;
+    }, {});
+    setAddedTracks(loadedAddedTracks);
+  }
+
     //API Access Token
     var authParameters = {
       method: "POST",
@@ -95,22 +107,40 @@ const playTrack = (previewUrl) => {
     console.log("No preview URL available for this track.");
   }
 };
+// const addToPlaylist = (track) => {
+//   if (!addedTracks[track.id]) { // Check if the track hasn't been added yet
+//     setPlaylist(currentPlaylist => [...currentPlaylist, track]);
+//     setAddedTracks({...addedTracks, [track.id]: true}); // Mark the track as added
+//   }
+// };
+
 const addToPlaylist = (track) => {
-  if (!addedTracks[track.id]) { // Check if the track hasn't been added yet
-    setPlaylist(currentPlaylist => [...currentPlaylist, track]);
-    setAddedTracks({...addedTracks, [track.id]: true}); // Mark the track as added
+  if (!addedTracks[track.id]) {
+    const newPlaylist = [...playlist, track];
+    setPlaylist(newPlaylist);
+    setAddedTracks({...addedTracks, [track.id]: true});
+    localStorage.setItem('playlist', JSON.stringify(newPlaylist)); // Save to localStorage
   }
 };
 
+// const removeFromPlaylist = (trackId) => {
+//   // Filter out the track with the specific ID from the playlist
+//   const updatedPlaylist = playlist.filter(track => track.id !== trackId);
+//   setPlaylist(updatedPlaylist);
+
+//   // Optionally, update the addedTracks state to reflect the removal
+//   const updatedAddedTracks = { ...addedTracks };
+//   delete updatedAddedTracks[trackId];
+//   setAddedTracks(updatedAddedTracks);
+// };
+
 const removeFromPlaylist = (trackId) => {
-  // Filter out the track with the specific ID from the playlist
   const updatedPlaylist = playlist.filter(track => track.id !== trackId);
   setPlaylist(updatedPlaylist);
-
-  // Optionally, update the addedTracks state to reflect the removal
   const updatedAddedTracks = { ...addedTracks };
   delete updatedAddedTracks[trackId];
   setAddedTracks(updatedAddedTracks);
+  localStorage.setItem('playlist', JSON.stringify(updatedPlaylist)); // Update localStorage
 };
   return (
   <div className="songs">

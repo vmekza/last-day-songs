@@ -10,9 +10,7 @@ const Customize = () => {
       {playlist.length > 0 ? (
         playlist.map((track, index) => (
           <div key={index}>
-            {/* Display track details for customization */}
             {track.name} - {track.artists[0].name}
-            {/* Include additional customization options here */}
           </div>
         ))
       ) : (

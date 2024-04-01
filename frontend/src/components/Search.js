@@ -1,10 +1,11 @@
 import React, { useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMusic, faPlay, faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
-const CLIENT_ID = "6c69e88cb3d6418b985f5dd5c7801b3f";
-const CLIENT_SECRET = "b65692da541a4177bf13bd2f43157c23";
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
+
 
 const Search = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -15,7 +16,11 @@ const Search = () => {
   const [showPlaylistDropdown, setShowPlaylistDropdown] = useState(false);
   const [addedTracks, setAddedTracks] = useState({});
 
+  const navigate = useNavigate();
 
+  const handleCustomizeClick = () => {
+    navigate('/customize', { state: { playlist } });
+  };
 
   useEffect(() => {
     //API Access Token
@@ -146,7 +151,9 @@ const removeFromPlaylist = (trackId) => {
             ) : (
               <div className="playlist_empty">Playlist is empty</div>
             )}
-            <Link to="/customize" className='playlist_button-customize button'>Customize</Link>
+            {playlist.length > 0 && (
+  <button onClick={handleCustomizeClick} className='playlist_button-customize button'>Customize</button>
+)}
           </div>
         )}
         </div>

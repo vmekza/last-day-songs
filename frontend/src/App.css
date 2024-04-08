@@ -276,6 +276,9 @@ span:nth-of-type(3) {
   align-items: center;
 
 }
+
+/*====================SEARCH RESULTS====================*/
+
 .search_results {
   display: flex;
   flex-direction: row;
@@ -401,10 +404,70 @@ span:nth-of-type(3) {
   position: absolute;
   top: 20px;
   left: 17px;
-  background-color: red;
+  background-color: #ff4365;
   color: white;
   border-radius: 50%;
   padding: 2px 6px;
-  font-size: 0.75rem; 
+  font-size: 0.75rem;
 }
 
+/*====================PLAY BUTTON====================*/
+.search_box {
+  margin-top: 152px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search_visualizer {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: #040404;
+  transition: .5s;
+}
+.search_play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  background:  #fff;
+  border-radius: 50%;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pause_btn {
+  border-right: 20px solid #ff4365;
+  border-bottom: 20px solid #ff4365;
+  height: 100px;
+  width: 75px;
+  cursor: pointer;
+}
+
+.play_btn {
+  cursor: pointer;
+  font-size: 7rem;
+  color: #24e1cb;
+  margin-left: 8px;
+}
+
+/*====================CUSTOMIZE====================*/
+
+
+.customize_list {
+font-size: 0.8 rem;
+color: black;
+padding: 20px;
+width: 500px;
+}
+/* style={{
+  backgroundColor,
+  fontSize: fontSize,
+  color: 'black',
+  padding: '20px',
+}} */

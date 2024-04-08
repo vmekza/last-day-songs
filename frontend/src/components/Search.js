@@ -1,8 +1,8 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMusic, faPlay, faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-
+import { faPlus, faMusic, faPlay, faCheck, faTrashAlt, faPause } from '@fortawesome/free-solid-svg-icons';
+import audioFile from './memory.mp3';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
@@ -16,6 +16,10 @@ const Search = () => {
   const [playlist, setPlaylist] = useState([]);
   const [showPlaylistDropdown, setShowPlaylistDropdown] = useState(false);
   const [addedTracks, setAddedTracks] = useState({});
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(new Audio(audioFile)); // Add the URL to your specific song here
+  // const previewAudioRef = useRef(null); // Ref for the preview audio element
+
 
   const navigate = useNavigate();
 
@@ -94,10 +98,7 @@ async function fetchArtistTracks(artistId) {
     } catch (error) {
         console.error("Error: ", error);
     }
-
-
 }
-
 
 const playTrack = (previewUrl) => {
   console.log("Attempting to play URL: ", previewUrl); // Debugging line
@@ -117,7 +118,6 @@ const addToPlaylist = (track) => {
   }
 };
 
-
 const removeFromPlaylist = (trackId) => {
   const updatedPlaylist = playlist.filter(track => track.id !== trackId);
   setPlaylist(updatedPlaylist);
@@ -126,6 +126,32 @@ const removeFromPlaylist = (trackId) => {
   setAddedTracks(updatedAddedTracks);
   localStorage.setItem('playlist', JSON.stringify(updatedPlaylist)); // Update localStorage
 };
+
+const togglePlay = () => {
+  const player = audioRef.current;
+
+  // Toggle play/pause state immediately, regardless of promise resolution
+  setIsPlaying(!isPlaying);
+
+  if (player) {
+    // Depending on the new state, play or pause the player
+    if (!isPlaying) { // If currently not playing, then play
+      const playPromise = player.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.error('Playback failed.', error);
+          // If play() was not successful, revert isPlaying state
+          setIsPlaying(false);
+        });
+      }
+    } else { // If currently playing, then pause
+      player.pause();
+    }
+  }
+};
+
+
 
 return (
   <div className="songs">
@@ -175,6 +201,14 @@ return (
       </div>
       </div>
       <div className="search_results result">
+        <div className="search_box">
+          <div className="search_visualizer"></div>
+        </div>
+        <div className="search_play play">
+        <div className={`play_btn btn ${isPlaying ? 'stop' : 'play'}`} onClick={togglePlay}>
+            <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} className="play_btn"/>
+          </div>
+        </div>
   {searchResults.map((track) => (
     <div className="result_card" key={track.id}>
       <div className="result_img">
@@ -182,7 +216,7 @@ return (
       </div>
       <div className="result_name">{track.artists[0].name}</div>
       <div className="result_title">{track.name}</div>
-      <div className="result_add"onClick={() => addToPlaylist(track)}>
+      <div className="result_add" onClick={() => addToPlaylist(track)}>
       {addedTracks[track.id] ? (
               <FontAwesomeIcon icon={faCheck} />
             ) : (
@@ -207,8 +241,9 @@ return (
 
 
   </div>
-  )
-
+//   </div>
+// )
+)
 };
 
 export default Search;

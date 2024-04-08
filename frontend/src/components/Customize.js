@@ -53,13 +53,11 @@ const Customize = () => {
         <button onClick={generatePlaylistImage}>Generate Image</button>
       </div>
   
-      <div
+      <div className='customize_list'
         ref={captureRef}
         style={{
           backgroundColor,
-          fontSize: fontSize,
-          color: 'white',
-          padding: '20px',
+        fontSize: fontSize,
         }}
       >
         <h2>Customize Your Playlist</h2>

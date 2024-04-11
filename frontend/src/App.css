@@ -420,6 +420,8 @@ span:nth-of-type(3) {
 }
 .search_visualizer {
   position: relative;
+  top: 152px;
+  left: 0px;
   width: 300px;
   height: 300px;
   border-radius: 50%;
@@ -441,20 +443,18 @@ span:nth-of-type(3) {
   align-items: center;
 }
 
-.pause_btn {
-  border-right: 20px solid #ff4365;
-  border-bottom: 20px solid #ff4365;
-  height: 100px;
-  width: 75px;
-  cursor: pointer;
-}
 
 .play_btn {
   cursor: pointer;
   font-size: 7rem;
   color: #24e1cb;
-  margin-left: 8px;
+  margin-left: 3px;
 }
+
+
+
+
+
 
 /*====================CUSTOMIZE====================*/
 
@@ -471,3 +471,65 @@ width: 500px;
   color: 'black',
   padding: '20px',
 }} */
+
+
+/* @keyframes popAndFall {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-200px) scale(1.5);
+    /* transform: translateX(-150px) scale(1.5); */
+    /* transform: translateX(150px) scale(1.5); */
+  /* } */
+
+  /* 100% {
+    opacity: 0;
+    transform: translateY(800px) scale(0);
+
+  }
+} */
+
+@keyframes popAndFall {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-20px) scale(1); /* Initial pop up */
+  }
+  50% {
+    transform: translateY(700px) scale(1.2); /* Hit the ground */
+  }
+  60% {
+    transform: translateY(400px) scale(1); /* Small bounce up */
+  }
+  /* 80% {
+    opacity: 1;
+    transform: translateY(350px) scale(1);
+  } */
+  100% {
+    opacity: 0;
+    transform: translateY(800px) scale(0.5); /* Fade away and scale down */
+  }
+}
+
+.music-note {
+  position: absolute;
+  font-size: 24px;
+  animation: popAndFall 5s ease-in-out;
+  animation-fill-mode: forwards; /* Ensures the element remains in the state of the last keyframe when the animation finishes */
+}
+
+
+/* .music-note {
+  position: absolute;
+  font-size: 24px;
+  animation: popAndFall 3s ease-in-out;
+  opacity: 0;
+} */
+
+

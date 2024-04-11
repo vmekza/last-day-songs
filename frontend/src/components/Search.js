@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMusic, faPlay, faCheck, faTrashAlt, faPause } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMusic, faPlay, faCheck, faTrashAlt, faPause, faHeadphones,faVolumeUp, faCompactDisc, faPlayCircle, faGuitar } from '@fortawesome/free-solid-svg-icons';
 import audioFile from './memory.mp3';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
@@ -17,9 +17,12 @@ const Search = () => {
   const [showPlaylistDropdown, setShowPlaylistDropdown] = useState(false);
   const [addedTracks, setAddedTracks] = useState({});
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(new Audio(audioFile)); // Add the URL to your specific song here
-  // const previewAudioRef = useRef(null); // Ref for the preview audio element
+  const audioRef = useRef(new Audio(audioFile));
+  const [showVisualizer, setShowVisualizer] = useState(true);
 
+
+
+  const [showNotes, setShowNotes] = useState(false);
 
   const navigate = useNavigate();
 
@@ -56,6 +59,8 @@ const Search = () => {
   }, [])
 
   async function search() {
+    setShowVisualizer(false);
+
     var searchURL = `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchInput)}&type=track,artist&limit=50`;
 
     try {
@@ -130,25 +135,56 @@ const removeFromPlaylist = (trackId) => {
 const togglePlay = () => {
   const player = audioRef.current;
 
-  // Toggle play/pause state immediately, regardless of promise resolution
+  // If the music is about to play, show notes.
+  if (!isPlaying) {
+    setShowNotes(true);
+    setTimeout(() => setShowNotes(false), 5000); // Hide notes after 3 seconds, adjust timing as needed
+  }
+
   setIsPlaying(!isPlaying);
 
   if (player) {
-    // Depending on the new state, play or pause the player
-    if (!isPlaying) { // If currently not playing, then play
+    if (!isPlaying) {
       const playPromise = player.play();
 
       if (playPromise !== undefined) {
         playPromise.catch(error => {
           console.error('Playback failed.', error);
-          // If play() was not successful, revert isPlaying state
           setIsPlaying(false);
         });
       }
-    } else { // If currently playing, then pause
+    } else {
       player.pause();
+      // If the music is stopping, don't show notes or hide them if they are already shown.
+      setShowNotes(false);
     }
   }
+};
+
+
+  // Render musical notes conditionally
+  const renderNotes = () => {
+    if (!showNotes) return null;
+
+    return (
+      <div>
+        <FontAwesomeIcon icon={faVolumeUp} className="music-note" style={{ right: '450px', top: '-70px', color: "#b91372" }} />
+        <FontAwesomeIcon icon={faMusic} className="music-note" style={{ right: '400px', top: '-30px'}} />
+        <FontAwesomeIcon icon={faHeadphones} className="music-note" style={{ right: '350px', top: '-80px', color: "#ff4365" }} />
+        <FontAwesomeIcon icon={faMusic} className="music-note" style={{ right: '300px', top: '-50px', color: "#24e1cb"}} />
+        <FontAwesomeIcon icon={faPlayCircle} className="music-note" style={{ right: '250px', top: '-90px' }} />
+        <FontAwesomeIcon icon={faHeadphones} className="music-note" style={{ right: '200px', top: '-30px', color: "#b91372" }} />
+        <FontAwesomeIcon icon={faCompactDisc} className="music-note" style={{ right: '150px', top: '-70px' }} />
+        <FontAwesomeIcon icon={faMusic} className="music-note" style={{ right: '80px', top: '-80px', color: "#ff4365" }} />
+        <FontAwesomeIcon icon={faGuitar} className="music-note" style={{ right: '60px', top: '-30px', color: "#24e1cb" }} />
+        <FontAwesomeIcon icon={faMusic} className="music-note" style={{ right: '-10px', top: '-90px' }} />
+        <FontAwesomeIcon icon={faVolumeUp} className="music-note" style={{ right: '-60px', top: '-30px', color: "#b91372" }} />
+        <FontAwesomeIcon icon={faHeadphones} className="music-note" style={{ right: '-120px', top: '-90px' }} />
+        <FontAwesomeIcon icon={faMusic} className="music-note" style={{ right: '-160px', top: '-30px', color: "#24e1cb"}} />
+        <FontAwesomeIcon icon={faCompactDisc} className="music-note" style={{ right: '-210px', top: '-70px' }} />
+      </div>
+
+    );
 };
 
 
@@ -201,14 +237,17 @@ return (
       </div>
       </div>
       <div className="search_results result">
-        <div className="search_box">
-          <div className="search_visualizer"></div>
+
+      <div className="search_visualizer" style={{ display: showVisualizer ? 'block' : 'none' }}>
+
+        <div className="search_play play" onClick={togglePlay}>
+
+        {renderNotes()}
+        <div className={`play_btn btn ${isPlaying ? 'stop' : 'play'}`}>
+            <FontAwesomeIcon icon={isPlaying ? faPause  : faPlay } className="play_btn"/>
         </div>
-        <div className="search_play play">
-        <div className={`play_btn btn ${isPlaying ? 'stop' : 'play'}`} onClick={togglePlay}>
-            <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} className="play_btn"/>
-          </div>
-        </div>
+      </div>
+      </div>
   {searchResults.map((track) => (
     <div className="result_card" key={track.id}>
       <div className="result_img">

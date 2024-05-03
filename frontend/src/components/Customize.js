@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
 
 const Customize = () => {
@@ -8,6 +8,7 @@ const Customize = () => {
     return savedPlaylist ? JSON.parse(savedPlaylist) : [];
   });
   const [backgroundColor, setBackgroundColor] = useState('#ffffff');
+  const [fontColor, setFontColor] = useState('#040303');
   const [note, setNote] = useState('My day. My rules. My songs');
   const [fontSize, setFontSize] = useState('16px');
   const captureRef = useRef(null);
@@ -24,53 +25,66 @@ const Customize = () => {
   };
 
   return (
-    <div>
-      <div id="customization-controls">
-        <label>
-          Background Color:
-          <input
-            type="color"
-            value={backgroundColor}
-            onChange={(e) => setBackgroundColor(e.target.value)}
-          />
-        </label>
-        <label>
-          Font Size:
-          <input
-            type="number"
-            value={fontSize.replace('px', '')}
-            onChange={(e) => setFontSize(`${e.target.value}px`)}
-          />
-        </label>
-        <label>
+    <div className='customize'>
+      <div id='customize_controls'>
+        <label className='customize_controls-label'>
           Note:
-          <input
-            type="text"
+          <input className='customize_input customize_input-note'
+            type='text'
             value={note}
             onChange={(e) => setNote(e.target.value)}
           />
         </label>
-        <button onClick={generatePlaylistImage}>Generate Image</button>
+        <label className='customize_controls-label'>
+          Background Color:
+          <input className='customize_input'
+            type='color'
+            value={backgroundColor}
+            onChange={(e) => setBackgroundColor(e.target.value)}
+          />
+        </label>
+        <label className='customize_controls-label'>
+          Font Color:
+          <input className='customize_input'
+            type='color'
+            value={fontColor}
+            onChange={(e) => setFontColor(e.target.value)}
+          />
+        </label>
+        <label className='customize_controls-label'>
+          Font Size:
+          <input className='customize_input customize_input-font'
+            type='number'
+            value={fontSize.replace('px', '')}
+            onChange={(e) => setFontSize(`${e.target.value}px`)}
+          />
+        </label>
+
+        <button className="button customize_btn" onClick={generatePlaylistImage}>Generate Image</button>
       </div>
-  
-      <div className='customize_list'
+
+      <div
+        className='customize_list'
         ref={captureRef}
         style={{
           backgroundColor,
-        fontSize: fontSize,
+          color: fontColor,
+          fontSize: fontSize,
         }}
       >
-        <h2>Customize Your Playlist</h2>
+        <div className='customize_list-note note'>{note}</div>
         {playlist.length > 0 ? (
           playlist.map((track, index) => (
-            <div key={index} style={{ margin: '10px 0' }}>
-              {track.name} - {track.artists.map(artist => artist.name).join(', ')}
+            <div key={index} style={{ margin: '15px 0px' }}>
+              {index + 1 }.{' '}
+              <span className='note_track'>{track.name}</span> -{' '}
+              {track.artists.map((artist) => artist.name).join(', ')}
             </div>
           ))
         ) : (
           <div>Playlist is empty</div>
         )}
-        <div style={{ marginTop: '20px' }}>{note}</div>
+
       </div>
     </div>
   );

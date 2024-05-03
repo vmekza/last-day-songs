@@ -203,7 +203,7 @@ span:nth-of-type(3) {
   padding: 15px 20px;
   font-size: 1.2rem;
   transition: all 500ms ease;
-  transition: 0.5s;
+  /* transition: 0.5s; */
 }
 
 .btn_start:hover {
@@ -243,6 +243,7 @@ span:nth-of-type(3) {
   border: 2px;
   box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
   border-radius: 5px;
+  font-size: 1.1rem;
 }
 .button {
   text-transform: uppercase;
@@ -250,7 +251,14 @@ span:nth-of-type(3) {
 }
 .search_button {
   height: 40px;
+  transition: all 500ms ease;
 }
+.search_button:hover {
+  color: #f2f2f2;
+  background-color: #00d9c0;
+  box-shadow: 0 0 20px #24e1cb;
+}
+
 .search_playlist {
   font-size: 1.3rem;
   text-transform: uppercase;
@@ -258,6 +266,7 @@ span:nth-of-type(3) {
   cursor: pointer;
   margin-right: 18px;
 }
+
 .search_playlist:after {
   content: "";
   display: block;
@@ -272,9 +281,7 @@ span:nth-of-type(3) {
 }
 
 .songs_search {
-
   align-items: center;
-
 }
 
 /*====================SEARCH RESULTS====================*/
@@ -286,8 +293,8 @@ span:nth-of-type(3) {
   text-align: center;
   align-items: center;
   justify-content: center;
-
 }
+
 .result_card {
   background: #FFF;
    width: 200px;
@@ -299,8 +306,8 @@ span:nth-of-type(3) {
    position: relative;
    box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
    border-radius: 5px;
-
 }
+
 .result_img img{
   height: 200px;
   width: 100%;
@@ -327,6 +334,7 @@ span:nth-of-type(3) {
 .result_title {
   margin-right: 15px;
 }
+
 .result_add {
   position: absolute;
   right: 13px;
@@ -334,6 +342,7 @@ span:nth-of-type(3) {
   font-size: 18px;
   cursor: pointer;
 }
+
 .result_play_icon {
   position: absolute;
   right: 13px;
@@ -351,15 +360,12 @@ span:nth-of-type(3) {
   text-align: center;
   padding: 10px;
   box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-
 }
-
 
 .search_playlist {
   position: relative;
   display: inline-block;
 }
-
 .playlist_dropdown {
   position: absolute;
   right: 0px;
@@ -371,13 +377,18 @@ span:nth-of-type(3) {
   width: 400px;
   border: 2px;
   box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
-  z-index: 1;
+  z-index: 15;
   font-size: 0.9rem;
+}
+.playlist_button-customize {
+  padding: 8px;
+  margin-right: 10px;
 }
 
 .playlist_track, .playlist_empty {
-  margin: 20px 0px;
+  margin: 10px 0px 20px 0px;
   padding: 0px 15px;
+  z-index: 5;
 
 }
 .playlist_img {
@@ -390,12 +401,14 @@ span:nth-of-type(3) {
   justify-content: space-between;
   flex-grow: 1;
 }
+
 .playlist_track {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 10px;
 }
+
 .playlist_delete_icon {
   cursor: pointer;
 }
@@ -407,8 +420,12 @@ span:nth-of-type(3) {
   background-color: #ff4365;
   color: white;
   border-radius: 50%;
-  padding: 2px 6px;
-  font-size: 0.75rem;
+  /* padding-top: 5px; */
+  width: 23px;
+  height: 23px;
+  text-align: center;
+  line-height: 1.3rem;
+  font-size: 0.7rem;
 }
 
 /*====================PLAY BUTTON====================*/
@@ -443,55 +460,12 @@ span:nth-of-type(3) {
   align-items: center;
 }
 
-
 .play_btn {
   cursor: pointer;
   font-size: 7rem;
   color: #24e1cb;
   margin-left: 3px;
 }
-
-
-
-
-
-
-/*====================CUSTOMIZE====================*/
-
-
-.customize_list {
-font-size: 0.8 rem;
-color: black;
-padding: 20px;
-width: 500px;
-}
-/* style={{
-  backgroundColor,
-  fontSize: fontSize,
-  color: 'black',
-  padding: '20px',
-}} */
-
-
-/* @keyframes popAndFall {
-  0% {
-    opacity: 0;
-    transform: translateY(10px) scale(0);
-  }
-  20% {
-    opacity: 1;
-    transform: translateY(-200px) scale(1.5);
-    /* transform: translateX(-150px) scale(1.5); */
-    /* transform: translateX(150px) scale(1.5); */
-  /* } */
-
-  /* 100% {
-    opacity: 0;
-    transform: translateY(800px) scale(0);
-
-  }
-} */
-
 @keyframes popAndFall {
   0% {
     opacity: 0;
@@ -507,10 +481,6 @@ width: 500px;
   60% {
     transform: translateY(400px) scale(1); /* Small bounce up */
   }
-  /* 80% {
-    opacity: 1;
-    transform: translateY(350px) scale(1);
-  } */
   100% {
     opacity: 0;
     transform: translateY(800px) scale(0.5); /* Fade away and scale down */
@@ -524,12 +494,70 @@ width: 500px;
   animation-fill-mode: forwards; /* Ensures the element remains in the state of the last keyframe when the animation finishes */
 }
 
+/*====================CUSTOMIZE====================*/
+.customize {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.customize_list {
+  color: black;
+  padding: 20px;
+  width: 600px;
+  margin: 50px;
+  text-align: justify;
+  border-radius: 5px;
+  border: 2px;
+  box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
+}
 
-/* .music-note {
-  position: absolute;
-  font-size: 24px;
-  animation: popAndFall 3s ease-in-out;
-  opacity: 0;
-} */
+#customize_controls {
+display: flex;
+flex-direction: column;
+font-size: 0.9rem;
+text-transform: uppercase;
+margin: 50px;
+}
+
+.customize_controls-label {
+  margin-bottom: 30px;
+}
+
+.customize_list-note {
+  margin: 10px 0px 30px 0px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+}
+
+.customize_input {
+  margin-left: 5px;
+}
+
+.customize_input-note {
+  width: 250px;
+  height: 25px;
+  text-transform: uppercase;
+}
+
+.customize_input-font {
+  width: 50px;
+}
+
+.customize_btn {
+  padding: 10px;
+  width: 150px;
+  transition: all 500ms ease;
+}
+.customize_btn:hover {
+  color: #f2f2f2;
+  background-color: #00d9c0;
+  box-shadow: 0 0 20px #24e1cb;
+}
+.note_track {
+  text-transform: uppercase;
+}
+
+
 
 

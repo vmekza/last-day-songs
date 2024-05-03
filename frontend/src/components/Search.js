@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMusic, faPlay, faCheck, faTrashAlt, faPause, faHeadphones,faVolumeUp, faCompactDisc, faPlayCircle, faGuitar } from '@fortawesome/free-solid-svg-icons';
-import audioFile from './memory.mp3';
+import { faPlus, faMusic, faPlay, faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
@@ -16,13 +16,6 @@ const Search = () => {
   const [playlist, setPlaylist] = useState([]);
   const [showPlaylistDropdown, setShowPlaylistDropdown] = useState(false);
   const [addedTracks, setAddedTracks] = useState({});
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(new Audio(audioFile));
-  const [showVisualizer, setShowVisualizer] = useState(true);
-
-
-
-  const [showNotes, setShowNotes] = useState(false);
 
   const navigate = useNavigate();
 
@@ -59,7 +52,7 @@ const Search = () => {
   }, [])
 
   async function search() {
-    setShowVisualizer(false);
+
 
     var searchURL = `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchInput)}&type=track,artist&limit=50`;
 
@@ -132,65 +125,12 @@ const removeFromPlaylist = (trackId) => {
   localStorage.setItem('playlist', JSON.stringify(updatedPlaylist)); // Update localStorage
 };
 
-const togglePlay = () => {
-  const player = audioRef.current;
 
-  // If the music is about to play, show notes.
-  if (!isPlaying) {
-    setShowNotes(true);
-    setTimeout(() => setShowNotes(false), 5000); // Hide notes after 3 seconds, adjust timing as needed
-  }
-
-  setIsPlaying(!isPlaying);
-
-  if (player) {
-    if (!isPlaying) {
-      const playPromise = player.play();
-
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.error('Playback failed.', error);
-          setIsPlaying(false);
-        });
-      }
-    } else {
-      player.pause();
-      // If the music is stopping, don't show notes or hide them if they are already shown.
-      setShowNotes(false);
-    }
-  }
-};
-
-
-  // Render musical notes conditionally
-  const renderNotes = () => {
-    if (!showNotes) return null;
-
-    return (
-      <div>
-        <FontAwesomeIcon icon={faVolumeUp} className="music-note" style={{ right: '450px', top: '-70px', color: "#b91372" }} />
-        <FontAwesomeIcon icon={faMusic} className="music-note" style={{ right: '400px', top: '-30px'}} />
-        <FontAwesomeIcon icon={faHeadphones} className="music-note" style={{ right: '350px', top: '-80px', color: "#ff4365" }} />
-        <FontAwesomeIcon icon={faMusic} className="music-note" style={{ right: '300px', top: '-50px', color: "#24e1cb"}} />
-        <FontAwesomeIcon icon={faPlayCircle} className="music-note" style={{ right: '250px', top: '-90px' }} />
-        <FontAwesomeIcon icon={faHeadphones} className="music-note" style={{ right: '200px', top: '-30px', color: "#b91372" }} />
-        <FontAwesomeIcon icon={faCompactDisc} className="music-note" style={{ right: '150px', top: '-70px' }} />
-        <FontAwesomeIcon icon={faMusic} className="music-note" style={{ right: '80px', top: '-80px', color: "#ff4365" }} />
-        <FontAwesomeIcon icon={faGuitar} className="music-note" style={{ right: '60px', top: '-30px', color: "#24e1cb" }} />
-        <FontAwesomeIcon icon={faMusic} className="music-note" style={{ right: '-10px', top: '-90px' }} />
-        <FontAwesomeIcon icon={faVolumeUp} className="music-note" style={{ right: '-60px', top: '-30px', color: "#b91372" }} />
-        <FontAwesomeIcon icon={faHeadphones} className="music-note" style={{ right: '-120px', top: '-90px' }} />
-        <FontAwesomeIcon icon={faMusic} className="music-note" style={{ right: '-160px', top: '-30px', color: "#24e1cb"}} />
-        <FontAwesomeIcon icon={faCompactDisc} className="music-note" style={{ right: '-210px', top: '-70px' }} />
-      </div>
-
-    );
-};
 
 
 
 return (
-  <div className="songs">
+<div className="songs">
     <div className="songs_search search">
       <div className="search_wrapper">
         <div className="search_item">
@@ -208,8 +148,8 @@ return (
           onMouseLeave={() => setShowPlaylistDropdown(false)}
           ><FontAwesomeIcon icon={faMusic} />
           {playlist.length > 0 && (
-        <div className="playlist_count">{playlist.length}</div>
-    )}
+            <div className="playlist_count">{playlist.length}</div>
+          )}
           {showPlaylistDropdown && (
           <div className="playlist_dropdown">
             {playlist.length > 0 ? (
@@ -228,46 +168,35 @@ return (
             ) : (
               <div className="playlist_empty">Playlist is empty</div>
             )}
-            {playlist.length > 0 && (
-  <button onClick={handleCustomizeClick} className='playlist_button-customize button'>Customize</button>
-)}
+            {playlist.length > 0 && (<button onClick={handleCustomizeClick} className='playlist_button-customize button'>Customize</button>
+            )}
           </div>
         )}
         </div>
       </div>
-      </div>
-      <div className="search_results result">
-
-      <div className="search_visualizer" style={{ display: showVisualizer ? 'block' : 'none' }}>
-
-        <div className="search_play play" onClick={togglePlay}>
-
-        {renderNotes()}
-        <div className={`play_btn btn ${isPlaying ? 'stop' : 'play'}`}>
-            <FontAwesomeIcon icon={isPlaying ? faPause  : faPlay } className="play_btn"/>
-        </div>
-      </div>
-      </div>
-  {searchResults.map((track) => (
-    <div className="result_card" key={track.id}>
-      <div className="result_img">
-        <img src={track.album.images[0]?.url || '#'} alt={track.name} />
-      </div>
-      <div className="result_name">{track.artists[0].name}</div>
-      <div className="result_title">{track.name}</div>
-      <div className="result_add" onClick={() => addToPlaylist(track)}>
-      {addedTracks[track.id] ? (
-              <FontAwesomeIcon icon={faCheck} />
-            ) : (
-        <FontAwesomeIcon icon={faPlus} />
-            )}</div>
-      <div className="result_play_icon" style={{ opacity: track.preview_url ? 1 : 0.2 }} onClick={() => track.preview_url && playTrack(track.preview_url)}>
-  <FontAwesomeIcon icon={faPlay} />
-</div>
 
     </div>
+    <div className="search_results result">
+
+    {searchResults.map((track) => (
+      <div className="result_card" key={track.id}>
+        <div className="result_img">
+          <img src={track.album.images[0]?.url || '#'} alt={track.name} />
+        </div>
+        <div className="result_name">{track.artists[0].name}</div>
+        <div className="result_title">{track.name}</div>
+        <div className="result_add" onClick={() => addToPlaylist(track)}>
+          {addedTracks[track.id] ? (
+              <FontAwesomeIcon icon={faCheck} />
+            ) : (
+          <FontAwesomeIcon icon={faPlus} />
+              )}
+        </div>
+        <div className="result_play_icon" style={{ opacity: track.preview_url ? 1 : 0.2 }} onClick={() => track.preview_url && playTrack(track.preview_url)}>
+          <FontAwesomeIcon icon={faPlay} />
+        </div>
+      </div>
   ))}
-</div>
 {currentPreviewUrl && (
   <div className="global_audio_player">
     <audio controls autoPlay src={currentPreviewUrl}>
@@ -275,13 +204,9 @@ return (
     </audio>
   </div>
 )}
+ </div>
+ </div>
 
-
-
-
-  </div>
-//   </div>
-// )
 )
 };
 

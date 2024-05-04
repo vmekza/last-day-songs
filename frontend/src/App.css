@@ -285,8 +285,14 @@ span:nth-of-type(3) {
 }
 
 /*====================SEARCH RESULTS====================*/
-
-.search_results {
+.result_title-popular {
+  text-transform: uppercase;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: bold;
+  margin: 50px 0px;
+}
+.result_card-wrapper  {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -294,7 +300,6 @@ span:nth-of-type(3) {
   align-items: center;
   justify-content: center;
 }
-
 .result_card {
   background: #FFF;
    width: 200px;
@@ -320,20 +325,19 @@ span:nth-of-type(3) {
   margin-bottom: 10px;
   margin-right: 15px;
 }
-.result_name, .result_title {
+.result_name,
+.result_title {
   flex-grow: 0;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: center;
   line-height: 1rem;
   text-transform: uppercase;
+  margin-right: 17px;
 }
 
-.result_title {
-  margin-right: 15px;
-}
 
 .result_add {
   position: absolute;
@@ -341,6 +345,7 @@ span:nth-of-type(3) {
   bottom: 10px;
   font-size: 18px;
   cursor: pointer;
+  margin-left: 5px;
 }
 
 .result_play_icon {
@@ -420,79 +425,14 @@ span:nth-of-type(3) {
   background-color: #ff4365;
   color: white;
   border-radius: 50%;
-  /* padding-top: 5px; */
   width: 23px;
   height: 23px;
   text-align: center;
   line-height: 1.3rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
-/*====================PLAY BUTTON====================*/
-.search_box {
-  margin-top: 152px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.search_visualizer {
-  position: relative;
-  top: 152px;
-  left: 0px;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: #040404;
-  transition: .5s;
-}
-.search_play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 250px;
-  height: 250px;
-  background:  #fff;
-  border-radius: 50%;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.play_btn {
-  cursor: pointer;
-  font-size: 7rem;
-  color: #24e1cb;
-  margin-left: 3px;
-}
-@keyframes popAndFall {
-  0% {
-    opacity: 0;
-    transform: translateY(50px) scale(0);
-  }
-  30% {
-    opacity: 1;
-    transform: translateY(-20px) scale(1); /* Initial pop up */
-  }
-  50% {
-    transform: translateY(700px) scale(1.2); /* Hit the ground */
-  }
-  60% {
-    transform: translateY(400px) scale(1); /* Small bounce up */
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(800px) scale(0.5); /* Fade away and scale down */
-  }
-}
-
-.music-note {
-  position: absolute;
-  font-size: 24px;
-  animation: popAndFall 5s ease-in-out;
-  animation-fill-mode: forwards; /* Ensures the element remains in the state of the last keyframe when the animation finishes */
-}
 
 /*====================CUSTOMIZE====================*/
 .customize {
@@ -557,6 +497,7 @@ margin: 50px;
 .note_track {
   text-transform: uppercase;
 }
+
 
 
 

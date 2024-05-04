@@ -4,7 +4,7 @@ body {
   font-size: 100%;
   line-height: 1;
   font-size: 1.5rem;
-  background: #f2f2f2;
+  background: #e4e3e3;
 }
 .home {
   height: 100vh;
@@ -25,7 +25,6 @@ body {
   font-family: 'Space+Mono';
   text-transform: uppercase;
   max-width: 600px;
-  /* padding: 5px 30px 5px 0px; */
   padding: 30px 60px;
   border-right: none;
   background-color: rgba(255, 255, 255, 1);
@@ -285,13 +284,24 @@ span:nth-of-type(3) {
 }
 
 /*====================SEARCH RESULTS====================*/
+.search_results {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .result_title-popular {
   text-transform: uppercase;
   font-size: 1rem;
-  text-align: center;
+  text-align: left;
   font-weight: bold;
-  margin: 50px 0px;
+  margin-top: 100px;
+  writing-mode: vertical-lr; /* Sets the text direction to vertical */
+  text-orientation: upright;
+  margin-left: 100px;
 }
+/* .result_title-popular-second {
+
+} */
 .result_card-wrapper  {
   display: flex;
   flex-direction: row;
@@ -299,6 +309,7 @@ span:nth-of-type(3) {
   text-align: center;
   align-items: center;
   justify-content: center;
+  margin-top: 100px;
 }
 .result_card {
   background: #FFF;
@@ -385,9 +396,17 @@ span:nth-of-type(3) {
   z-index: 15;
   font-size: 0.9rem;
 }
+
 .playlist_button-customize {
   padding: 8px;
   margin-right: 10px;
+  transition: all 500ms ease;
+}
+
+.playlist_button-customize:hover {
+  color: #f2f2f2;
+  background-color: #00d9c0;
+  box-shadow: 0 0 20px #24e1cb;
 }
 
 .playlist_track, .playlist_empty {
@@ -439,6 +458,7 @@ span:nth-of-type(3) {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 100px;
 }
 .customize_list {
   color: black;

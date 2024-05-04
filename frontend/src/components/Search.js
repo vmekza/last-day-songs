@@ -247,7 +247,11 @@ return (
     </div>
     <div className="search_results result">
     {searchResults.length === 0 && (
-        <div className="result_title-popular">Most Popular Tracks</div> // This title will only show when there are no search results
+        <div className="result_title-popular">
+
+         Popular Tracks
+        </div>
+
       )}
       <div className="result_card-wrapper">
       {searchResults.length > 0 ? (

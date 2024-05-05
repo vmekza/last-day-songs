@@ -5,7 +5,7 @@ const Home = () => {
     <div className='home'>
       <div>
         <div className='left_content'>
-          <p className='left_content_top'>
+          <p className='left_content_top top'>
             <span>
               <i>Make in advance</i>
             </span>
@@ -20,7 +20,7 @@ const Home = () => {
             <br></br>
             <br></br>
             <span>
-              <i>[ Save it or share it ]</i>
+              <i className='top_save-share'>[ Save it or share it ]</i>
             </span>
             <br></br>
             <br></br>

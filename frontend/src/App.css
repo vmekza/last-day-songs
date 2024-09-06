@@ -179,7 +179,7 @@ span:nth-of-type(3) {
 .right_content-button {
   margin-top: 60px;
 }
-.btn_start{
+.btn_start {
   margin-right: 25px;
   text-decoration: none;
   text-transform: uppercase;
@@ -289,7 +289,6 @@ span:nth-of-type(3) {
   .right_content-button {
     margin-top: 35px;
   }
-
 }
 /*====================SEARCH====================*/
 
@@ -297,7 +296,7 @@ span:nth-of-type(3) {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 0px 15px
+  padding: 0px 15px;
 }
 .search_wrapper {
   display: flex;
@@ -310,7 +309,7 @@ span:nth-of-type(3) {
   text-align: center;
   margin-right: 375px;
 }
-.search_field{
+.search_field {
   width: 400px;
   height: 40px;
   margin-right: 20px;
@@ -341,7 +340,7 @@ span:nth-of-type(3) {
   margin-right: 18px;
 }
 .search_playlist:after {
-  content: "";
+  content: '';
   display: block;
   height: 40px;
   width: 40px;
@@ -372,7 +371,7 @@ span:nth-of-type(3) {
   text-orientation: upright;
   margin-left: 100px;
 }
-.result_card-wrapper  {
+.result_card-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -382,18 +381,18 @@ span:nth-of-type(3) {
   margin-top: 100px;
 }
 .result_card {
-  background: #FFF;
-   width: 200px;
-   height: 291px;
-   margin: 20px;
-   box-shadow: 0px 0px 20px rgba(0,0,0,0.05);
-   box-sizing: border-box;
-   padding: 15px 15px 10px 15px;
-   position: relative;
-   box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
-   border-radius: 5px;
+  background: #fff;
+  width: 200px;
+  height: 291px;
+  margin: 20px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  padding: 15px 15px 10px 15px;
+  position: relative;
+  box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
+  border-radius: 5px;
 }
-.result_img img{
+.result_img img {
   height: 200px;
   width: 100%;
   margin-bottom: 15px;
@@ -440,7 +439,7 @@ span:nth-of-type(3) {
   background: #f2f2f2;
   text-align: center;
   padding: 10px;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 .search_playlist {
   position: relative;
@@ -470,7 +469,8 @@ span:nth-of-type(3) {
   background-color: #00d9c0;
   box-shadow: 0 0 20px #24e1cb;
 }
-.playlist_track, .playlist_empty {
+.playlist_track,
+.playlist_empty {
   margin: 10px 0px 20px 0px;
   padding: 0px 15px;
   z-index: 5;
@@ -508,7 +508,13 @@ span:nth-of-type(3) {
   font-size: 0.8rem;
   font-weight: bold;
 }
-
+@media (max-width: 1350px) {
+  .result_card-wrapper {
+    flex-wrap: nowrap;
+  }
+}
+@media (min-width: 600px) and (max-width: 768px) {
+}
 
 /*====================CUSTOMIZE====================*/
 .customize {
@@ -528,11 +534,11 @@ span:nth-of-type(3) {
   box-shadow: 0 0 20px rgba(2, 2, 2, 0.2);
 }
 #customize_controls {
-display: flex;
-flex-direction: column;
-font-size: 0.9rem;
-text-transform: uppercase;
-margin: 50px;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  margin: 50px;
 }
 .customize_controls-label {
   margin-bottom: 30px;
@@ -567,8 +573,3 @@ margin: 50px;
 .note_track {
   text-transform: uppercase;
 }
-
-
-
-
-

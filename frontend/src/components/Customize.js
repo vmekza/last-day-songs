@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
 
 const Customize = () => {
-  // Retrieve the playlist from localStorage on component mount
   const [playlist, setPlaylist] = useState(() => {
     const savedPlaylist = localStorage.getItem('playlist');
     return savedPlaylist ? JSON.parse(savedPlaylist) : [];
@@ -13,15 +12,39 @@ const Customize = () => {
   const [fontSize, setFontSize] = useState('16px');
   const captureRef = useRef(null);
 
-  // Function to generate the playlist image
   const generatePlaylistImage = () => {
     if (captureRef.current) {
       html2canvas(captureRef.current).then((canvas) => {
         const image = canvas.toDataURL('image/png');
-        const newWindow = window.open();
-        newWindow.document.write(`<img src="${image}" alt="Playlist image"/>`);
+        const link = document.createElement('a');
+        link.href = image;
+        link.download = 'playlist.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }).catch(error => console.error('Error generating image:', error));
     }
+  };
+
+  const printPlaylist = () => {
+    if (captureRef.current) {
+      html2canvas(captureRef.current).then((canvas) => {
+        const image = canvas.toDataURL('image/png');
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`<img src="${image}" onload="window.print();window.close()" />`);
+      }).catch(error => console.error('Error generating image:', error));
+    }
+  };
+
+  const emailPlaylist = () => {
+    const emailBody = `
+      Note: ${note}
+      Background Color: ${backgroundColor}
+      Font Color: ${fontColor}
+      Font Size: ${fontSize}
+      Playlist: ${playlist.map((track, index) => `${index + 1}. ${track.name} - ${track.artists.map(artist => artist.name).join(', ')}`).join('\n')}
+    `;
+    window.location.href = `mailto:?subject=My Customized Playlist&body=${encodeURIComponent(emailBody)}`;
   };
 
   return (
@@ -60,7 +83,9 @@ const Customize = () => {
           />
         </label>
 
-        <button className="button customize_btn" onClick={generatePlaylistImage}>Generate Image</button>
+        <button className="button customize_btn" onClick={generatePlaylistImage}>Download Image</button>
+        <button className="button customize_btn" onClick={printPlaylist}>Print Playlist</button>
+        <button className="button customize_btn" onClick={emailPlaylist}>Email Playlist</button>
       </div>
 
       <div
@@ -76,7 +101,7 @@ const Customize = () => {
         {playlist.length > 0 ? (
           playlist.map((track, index) => (
             <div key={index} style={{ margin: '15px 0px' }}>
-              {index + 1 }.{' '}
+              {index + 1}.{' '}
               <span className='note_track'>{track.name}</span> -{' '}
               {track.artists.map((artist) => artist.name).join(', ')}
             </div>
@@ -84,7 +109,6 @@ const Customize = () => {
         ) : (
           <div>Playlist is empty</div>
         )}
-
       </div>
     </div>
   );

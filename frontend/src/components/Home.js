@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div className='home'>
+      <video className='home_bg' src='space.mp4' autoPlay muted loop />
       <div>
         <div className='left_content'>
           <p className='left_content_top top'>
